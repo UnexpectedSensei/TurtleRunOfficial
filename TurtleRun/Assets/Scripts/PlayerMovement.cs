@@ -23,22 +23,23 @@ namespace Assets.Scripts
             float moveY = 0f;
 
             // Check for arrow key inputs
-            if (Input.GetKey(KeyCode.UpArrow))
+            if (Input.GetButton("DownMovement"))
             {
-                moveY = 1f;
+                animator.Play("Hiding");
             }
-            else if (Input.GetKey(KeyCode.DownArrow))
+            else
             {
-                moveY = -1f;
+                animator.Play("Walking");
             }
 
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetButton("LeftMovement"))
             {
-                moveX = -1f;
+                animator.Play("Walking");// Play walking animation sequence
+                moveX = -5f;
             }
-            else if (Input.GetKey(KeyCode.RightArrow))
+            else if (Input.GetButton("RightMovement"))
             {
-                moveX = 1f;
+                moveX = 5f;
             }
 
             // Create a movement vector and normalize it to ensure consistent speed
@@ -49,5 +50,6 @@ namespace Assets.Scripts
 
             
         }
+
     }
 }

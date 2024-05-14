@@ -9,7 +9,9 @@ public class ChangeToGameScreen1 : MonoBehaviour
     public void ChangeToGame()
     {
         // Load the game screen
-        SceneManager.LoadScene("GameScreen1");
+        if (Input.GetButton("Confirm"))
+        
+            SceneManager.LoadScene("GameScreen1");
     }
 }
 
