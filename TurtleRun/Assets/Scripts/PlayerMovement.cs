@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -19,37 +20,44 @@ namespace Assets.Scripts
 
         void Update()
         {
-            float moveX = 0f;
-            float moveY = 0f;
-
-            // Check for arrow key inputs
+            // Check for DownMovement key being held
             if (Input.GetButton("DownMovement"))
             {
                 animator.Play("Hiding");
+                rb.velocity = Vector2.zero; // Stop all movement when hiding
             }
             else
             {
-                animator.Play("Walking");
+                HandleOtherInputs(); // Check for other inputs only if the DownMovement button is not being held
             }
+        }
 
-            if (Input.GetButton("LeftMovement"))
+        void HandleOtherInputs()
+        {
+            float moveX = 0f;
+            float moveY = 0f;
+
+            if (Input.GetButton("LeftMovement")) // Moves the player character left
             {
-                animator.Play("Walking");// Play walking animation sequence
-                moveX = -5f;
+                animator.Play("Walking"); // Play walking animation sequence
+                moveX = -1f; // Adjust the value if needed
             }
-            else if (Input.GetButton("RightMovement"))
+            else if (Input.GetButton("RightMovement")) // Moves the player character right
             {
-                moveX = 5f;
+                animator.Play("Walking");
+                moveX = 1f; // Adjust the value if needed
+            }
+            else
+            {
+                // If no movement keys are pressed, play the idle animation
+                animator.Play("Idle");
             }
 
             // Create a movement vector and normalize it to ensure consistent speed
             Vector2 movement = new Vector2(moveX, moveY).normalized;
 
-            // Set the velocity of the Rigidbody2D
+            // Set the velocity of the player's Rigidbody
             rb.velocity = movement * Speed;
-
-            
         }
-
     }
 }
