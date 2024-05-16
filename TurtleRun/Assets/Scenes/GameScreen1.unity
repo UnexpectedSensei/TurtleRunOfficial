@@ -350,7 +350,7 @@ GameObject:
   - component: {fileID: 684577111}
   - component: {fileID: 684577110}
   - component: {fileID: 684577115}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MainCharacter
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -373,8 +373,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.039}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -839, y: -450}
-  m_SizeDelta: {x: 198.5692, y: 119.6094}
+  m_AnchoredPosition: {x: -839, y: -452.1759}
+  m_SizeDelta: {x: 198.5692, y: 123.7513}
   m_Pivot: {x: 0.50000006, y: 0.5}
 --- !u!95 &684577110
 Animator:
@@ -961,7 +961,8 @@ GameObject:
   - component: {fileID: 1369231040}
   - component: {fileID: 1369231042}
   - component: {fileID: 1369231041}
-  m_Layer: 0
+  - component: {fileID: 1369231043}
+  m_Layer: 5
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1024,6 +1025,23 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1369231043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369231039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab802a28b26da14c8775ac1a965ffe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLives: 3
+  hearts:
+  - {fileID: 305703818}
+  - {fileID: 1062748396}
+  - {fileID: 2093396141}
 --- !u!1 &1734639728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,8 +1076,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 388, y: 439.91}
-  m_SizeDelta: {x: 99.4941, y: 70.6648}
+  m_AnchoredPosition: {x: 372, y: 439.91}
+  m_SizeDelta: {x: 96.6102, y: 75.4714}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1734639730
 MonoBehaviour:
