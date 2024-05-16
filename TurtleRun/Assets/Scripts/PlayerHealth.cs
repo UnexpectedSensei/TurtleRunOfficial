@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
@@ -26,6 +27,16 @@ public class PlayerHealth : MonoBehaviour
             currentLives = 0;
         }
         UpdateHeartsUI();
+
+        if (currentLives <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die() // Method to handle player death and change to DeathScreen
+    {
+        SceneManager.LoadScene("DeathScreen");
     }
 
     // Method to update the hearts UI
