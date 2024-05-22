@@ -10,13 +10,17 @@ public class PlayerHealth : MonoBehaviour
     private int currentLives; // Current number of lives
     private string currentState = "idle"; // Example of default state
     public Image[] hearts; // Array to hold the heart images
-
+    public bool isInvulnerable = false; // Track invulnerability state
+    private float invulnerabilityEndTime = 10f; // Time when invulnerability ends
     void Start()
     {
         // Initialize the player's lives
         currentLives = maxLives;
         UpdateHeartsUI();
     }
+
+
+
 
     // Method to handle taking damage
     public void TakeDamage(int damage)
@@ -32,6 +36,21 @@ public class PlayerHealth : MonoBehaviour
         {
             Die();
         }
+    }
+
+    private void Update()
+    {
+        //Check if invulnerability time has passed
+        if (isInvulnerable && Time.time > invulnerabilityEndTime)
+        {
+            isInvulnerable = false;
+        }
+    }
+
+    public void StartInvulnerability(float duration)
+    {
+        isInvulnerable = true;
+        invulnerabilityEndTime = Time.time + duration;
     }
 
     // Update or other methods to change the state
