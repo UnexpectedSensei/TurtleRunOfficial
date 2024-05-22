@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class SeagullMovement : MonoBehaviour
 {
-    public float speed = 5f; // Speed at which the character moves
+    public float speed = 10f; // Speed of the character
     public GameObject item1; // First item prefab
     public GameObject item2; // Second item prefab
-    public float minDropInterval = 15f; // Minimum interval between drops
-    public float maxDropInterval = 25f; // Maximum interval between drops
+    public float minDropInterval = 5f; // Minimum interval between drops
+    public float maxDropInterval = 15f; // Maximum interval between drops
 
-    private float screenWidth;
+    private RectTransform rectTransform;
+    private Canvas canvas;
 
     void Start()
     {
-        // Calculate screen width in world units
-        screenWidth = Camera.main.aspect * Camera.main.orthographicSize * 2f;
+        rectTransform = GetComponent<RectTransform>();
+        canvas = GetComponentInParent<Canvas>();
 
         // Start the coroutine to drop items
         StartCoroutine(DropItemsAtRandomIntervals());
@@ -23,13 +24,13 @@ public class SeagullMovement : MonoBehaviour
 
     void Update()
     {
-        // Move the character across the screen
-        transform.position += Vector3.right * speed * Time.deltaTime;
+        // Move the character horizontally
+        rectTransform.anchoredPosition += Vector2.right * speed * Time.deltaTime;
 
         // Wrap the character to the left side of the screen when it goes off the right edge
-        if (transform.position.x > screenWidth / 2)
+        if (rectTransform.anchoredPosition.x > canvas.pixelRect.width)
         {
-            transform.position = new Vector3(-screenWidth / 2, transform.position.y, transform.position.z);
+            rectTransform.anchoredPosition = new Vector2(-rectTransform.rect.width, rectTransform.anchoredPosition.y);
         }
     }
 
@@ -45,7 +46,8 @@ public class SeagullMovement : MonoBehaviour
             GameObject itemToDrop = Random.value > 0.5f ? item1 : item2;
 
             // Instantiate the item at the character's current position
-            Instantiate(itemToDrop, transform.position, Quaternion.identity);
+            GameObject itemInstance = Instantiate(itemToDrop, transform.parent);
+            itemInstance.GetComponent<RectTransform>().anchoredPosition = rectTransform.anchoredPosition;
         }
     }
 }
