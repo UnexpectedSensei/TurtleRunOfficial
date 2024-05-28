@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -8,15 +5,18 @@ namespace Assets.Scripts
     public class PlayerMovement : MonoBehaviour
     {
         public float Speed = 5f; // Speed of the player
-        public float Sprint = 10f; //Speed of the player sprinting
+        public float SprintSpeed = 10f; // Speed of the player sprinting
         private Animator animator; // Reference to the Animator component
         private Rigidbody2D rb; // Reference to the Rigidbody2D component
+        public float MaxSprint = 10; // Max total of sprint bar
+        public SprintBar SprintBar;
 
         void Start()
         {
             // Get the Animator and Rigidbody2D components attached to the GameObject
             animator = GetComponent<Animator>();
             rb = GetComponent<Rigidbody2D>();
+            SprintBar.SetMaxSprint(MaxSprint);
         }
 
         void Update()
@@ -37,33 +37,43 @@ namespace Assets.Scripts
         {
             float moveX = 0f;
             float moveY = 0f;
+            bool isSprinting = false;
 
-            if (Input.GetButton("LeftMovement")) // Moves the player character left
+            // Check for sprinting first
+            if (Input.GetKey(KeyCode.Keypad5) && SprintBar.GetCurrentSprint() > 0)
             {
-                animator.Play("Walking"); // Play walking animation sequence
-                moveX = -1f; // Adjust the value if needed
+                animator.Play("Sprinting");
+                moveX = Input.GetButton("RightMovement") ? 1f : 0f; // Only sprint to the right
+                isSprinting = true;
+                SprintBar.SetSprint(SprintBar.GetCurrentSprint() - Time.deltaTime); // Decrease sprint value over time
             }
-            else if (Input.GetButton("RightMovement")) // Moves the player character right
+
+            if (!isSprinting)
             {
-                animator.Play("Walking");
-                moveX = 1f; // Adjust the value if needed
-            }
-            else if (Input.GetButton("Sprint"))
-            {
-                animator.Play("Sprint");
-                moveX = Sprint;
-            }
-            else
-            {
+                // Check for other movements if not sprinting
+                if (Input.GetButton("LeftMovement"))
+                {
+                    animator.Play("Walking"); // Play walking animation sequence
+                    moveX = -1f; // Adjust the value if needed
+                }
+                else if (Input.GetButton("RightMovement"))
+                {
+                    animator.Play("Walking");
+                    moveX = 1f; // Adjust the value if needed
+                }
+
                 // If no movement keys are pressed, play the idle animation
-                animator.Play("Idle");
+                if (moveX == 0 && moveY == 0)
+                {
+                    animator.Play("Idle");
+                }
             }
 
             // Create a movement vector and normalize it to ensure consistent speed
             Vector2 movement = new Vector2(moveX, moveY).normalized;
 
-            // Set the velocity of the player's Rigidbody
-            rb.velocity = movement * Speed;
+            // Set the velocity of the player's Rigidbody, adjusting speed for sprinting
+            rb.velocity = movement * (isSprinting ? SprintSpeed : Speed);
         }
     }
 }
