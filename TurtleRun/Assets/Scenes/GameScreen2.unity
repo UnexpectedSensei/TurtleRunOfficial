@@ -675,6 +675,7 @@ MonoBehaviour:
   - {fileID: 343497989}
   - {fileID: 53624236}
   - {fileID: 293349826}
+  isInvulnerable: 0
 --- !u!222 &1148527529
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1247,11 +1248,11 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1964163106}
-  - {fileID: 1323290813}
   - {fileID: 1148527531}
   - {fileID: 307777693}
   - {fileID: 1990672845}
+  - {fileID: 1964163106}
+  - {fileID: 1323290813}
   - {fileID: 1870599286}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -11,6 +11,7 @@ public class EnemyMovement : MonoBehaviour
     public float speed; // Speed at which the character moves
 
     private Vector2 targetVelocity; // The current velocity towards the target point
+    private GameObject currentTarget; // The current target point
 
     // Start is called before the first frame update
     void Start()
@@ -18,8 +19,11 @@ public class EnemyMovement : MonoBehaviour
         // Get the Rigidbody2D component attached to this GameObject
         rb = GetComponent<Rigidbody2D>();
 
-        // Initially set the target velocity towards PointB
-        targetVelocity = CalculateVelocity(PointB.transform.position);
+        // Initially set the current target to PointB
+        currentTarget = PointB;
+
+        // Set the initial target velocity towards the current target
+        targetVelocity = CalculateVelocity(currentTarget.transform.position);
         rb.velocity = targetVelocity;
     }
 
@@ -30,14 +34,17 @@ public class EnemyMovement : MonoBehaviour
         rb.velocity = targetVelocity;
     }
 
-    // This method is called when the collider attached to this GameObject enters a collision with another collider
-    private void OnCollisionEnter2D(Collision2D collision)
+    // This method is called when the collider attached to this GameObject enters a trigger collider
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if the collision is with PointA or PointB
         if (collision.gameObject == PointA || collision.gameObject == PointB)
         {
-            // Reverse the direction of movement by recalculating the velocity
-            targetVelocity = -rb.velocity;
+            // Switch the target to the opposite point
+            currentTarget = (collision.gameObject == PointA) ? PointB : PointA;
+
+            // Recalculate the velocity towards the new target
+            targetVelocity = CalculateVelocity(currentTarget.transform.position);
         }
     }
 
