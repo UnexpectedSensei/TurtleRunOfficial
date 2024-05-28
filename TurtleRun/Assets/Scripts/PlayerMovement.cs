@@ -8,6 +8,7 @@ namespace Assets.Scripts
     public class PlayerMovement : MonoBehaviour
     {
         public float Speed = 5f; // Speed of the player
+        public float Sprint = 10f; //Speed of the player sprinting
         private Animator animator; // Reference to the Animator component
         private Rigidbody2D rb; // Reference to the Rigidbody2D component
 
@@ -46,6 +47,11 @@ namespace Assets.Scripts
             {
                 animator.Play("Walking");
                 moveX = 1f; // Adjust the value if needed
+            }
+            else if (Input.GetButton("Sprint"))
+            {
+                animator.Play("Sprint");
+                moveX = Sprint;
             }
             else
             {
