@@ -10,102 +10,81 @@ public class PlayerHealth : MonoBehaviour
     private int currentLives; // Current number of lives
     private string currentState = "idle"; // Example of default state
     public Image[] hearts; // Array to hold the heart images
-    public bool isInvulnerable = false; // Track invulnerability state
-    private float invulnerabilityEndTime = 10f; // Time when invulnerability ends
+
     void Start()
     {
         // Initialize the player's lives
         currentLives = maxLives;
-        UpdateHeartsUI();
+        UpdateHeartsUI(); // Update the UI to show the correct number of hearts
     }
-
-
-
 
     // Method to handle taking damage
     public void TakeDamage(int damage)
     {
-        currentLives -= damage;
+        currentLives -= damage; // Reduce the player's lives by the damage amount
         if (currentLives < 0)
         {
-            currentLives = 0;
+            currentLives = 0; // Ensure lives don't go below zero
         }
-        UpdateHeartsUI();
+        UpdateHeartsUI(); // Update the UI to reflect the new number of lives
 
         if (currentLives <= 0)
         {
-            Die();
+            Die(); // Handle player death if lives reach zero
         }
     }
 
-    private void Update()
-    {
-        //Check if invulnerability time has passed
-        if (isInvulnerable && Time.time > invulnerabilityEndTime)
-        {
-            isInvulnerable = false;
-        }
-    }
-
-    public void StartInvulnerability(float duration)
-    {
-        isInvulnerable = true;
-        invulnerabilityEndTime = Time.time + duration;
-    }
-
-    // Update or other methods to change the state
+    // Method to change the player's state
     public void ChangeState(string newState)
     {
         currentState = newState;
     }
 
+    // Method to get the current state of the player
     public string GetCurrentState()
     {
         return currentState;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    // Method triggered when the player collides with another object
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("CrabEnemy"))
+        // Check if the object the player collided with has the tag "CrabEnemy"
+        if (other.CompareTag("CrabEnemy"))
         {
-            if (currentState == "idle" || currentState == "walking")
+            // If the player is in "idle", "walking", or "sprinting" state, take damage
+            if (currentState == "idle" || currentState == "walking" || currentState == "sprinting")
             {
                 TakeDamage(1);
             }
         }
     }
 
-    void Die() // Method to handle player death and change to DeathScreen
+    // Method to handle player death
+    void Die()
     {
+        // Load the DeathScreen scene upon death
         SceneManager.LoadScene("DeathScreen");
     }
 
-    // Method to update the hearts UI
+    // Method to update the hearts UI based on the current lives
     void UpdateHeartsUI()
     {
         for (int i = 0; i < hearts.Length; i++)
         {
-            if (i < currentLives)
-            {
-                hearts[i].enabled = true; // Show heart
-            }
-            else
-            {
-                hearts[i].enabled = false; // Hide heart
-            }
+            // Show or hide heart based on current lives
+            hearts[i].enabled = i < currentLives;
         }
     }
 
-    // Method to handle healing (if applicable)
+    // Method to handle healing the player
     public void Heal(int amount)
     {
-        currentLives += amount;
+        currentLives += amount; // Increase the player's lives by the heal amount
         if (currentLives > maxLives)
         {
-            currentLives = maxLives;
+            currentLives = maxLives; // Ensure lives don't exceed the maximum limit
         }
-        UpdateHeartsUI();
+        UpdateHeartsUI(); // Update the UI to reflect the new number of lives
     }
-
-
 }

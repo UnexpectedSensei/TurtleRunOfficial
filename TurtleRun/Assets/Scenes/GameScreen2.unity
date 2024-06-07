@@ -340,7 +340,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 307777692}
   m_LocalRotation: {x: -0, y: -0, z: 0.00033634529, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5.7706532}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: -1.0495, y: 1.0495, z: 1.0495}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -379,7 +379,6 @@ MonoBehaviour:
   Speed: 50
   SprintSpeed: 100
   MaxSprint: 10
-  CurrentSprint: 0
   SprintBar: {fileID: 1503587430}
 --- !u!95 &307777696
 Animator:
@@ -1217,7 +1216,7 @@ Transform:
   m_GameObject: {fileID: 1323290812}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -328, y: -499, z: 2086.9006}
+  m_LocalPosition: {x: -328, y: -499, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2064,7 +2063,7 @@ Transform:
   m_GameObject: {fileID: 1964163105}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -328, y: -134, z: 2086.9006}
+  m_LocalPosition: {x: -328, y: -134, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2159,7 +2158,7 @@ GameObject:
   - component: {fileID: 1990672851}
   m_Layer: 3
   m_Name: CrabEnemy
-  m_TagString: Untagged
+  m_TagString: CrabEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2172,7 +2171,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1990672844}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 21.651615}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
