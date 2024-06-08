@@ -1132,7 +1132,6 @@ MonoBehaviour:
   - {fileID: 343497989}
   - {fileID: 53624236}
   - {fileID: 293349826}
-  isInvulnerable: 0
 --- !u!222 &1148527529
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1421,7 +1420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 807058434}
-  refillRate: 1
+  refillRate: 0.1
 --- !u!114 &1503587431
 MonoBehaviour:
   m_ObjectHideFlags: 0

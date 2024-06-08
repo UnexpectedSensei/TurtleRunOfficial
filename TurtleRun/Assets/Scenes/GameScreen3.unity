@@ -1835,7 +1835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1121132108}
-  refillRate: 0.2
+  refillRate: 0.1
 --- !u!1 &1687719421
 GameObject:
   m_ObjectHideFlags: 0
