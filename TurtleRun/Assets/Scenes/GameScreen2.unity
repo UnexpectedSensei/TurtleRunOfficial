@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 50
-  SprintSpeed: 100
+  SprintSpeed: 150
   MaxSprint: 10
   SprintBar: {fileID: 1503587430}
 --- !u!95 &307777696
