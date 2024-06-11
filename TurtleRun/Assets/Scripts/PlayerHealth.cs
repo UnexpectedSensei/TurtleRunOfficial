@@ -6,30 +6,22 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxLives = 3; // Maximum number of lives
-    private int currentLives; // Current number of lives
-    private string currentState = "idle"; // Example of default state
     public Image[] hearts; // Array to hold the heart images
+    private string currentState = "idle"; // Example of default state
 
     void Start()
     {
-        // Initialize the player's lives
-        currentLives = maxLives;
         UpdateHeartsUI(); // Update the UI to show the correct number of hearts
     }
 
     // Method to handle taking damage
     public void TakeDamage(int damage)
     {
-        currentLives -= damage; // Reduce the player's lives by the damage amount
-        Debug.Log("Player took damage. Current lives: " + currentLives);
-        if (currentLives < 0)
-        {
-            currentLives = 0; // Ensure lives don't go below zero
-        }
+        GameManager.instance.TakeDamage(damage); // Reduce the player's lives by the damage amount
+        Debug.Log("Player took damage. Current lives: " + GameManager.instance.currentLives);
         UpdateHeartsUI(); // Update the UI to reflect the new number of lives
 
-        if (currentLives <= 0)
+        if (GameManager.instance.currentLives <= 0)
         {
             Die(); // Handle player death if lives reach zero
         }
@@ -77,18 +69,14 @@ public class PlayerHealth : MonoBehaviour
         for (int i = 0; i < hearts.Length; i++)
         {
             // Show or hide heart based on current lives
-            hearts[i].enabled = i < currentLives;
+            hearts[i].enabled = i < GameManager.instance.currentLives;
         }
     }
 
     // Method to handle healing the player
     public void Heal(int amount)
     {
-        currentLives += amount; // Increase the player's lives by the heal amount
-        if (currentLives > maxLives)
-        {
-            currentLives = maxLives; // Ensure lives don't exceed the maximum limit
-        }
+        GameManager.instance.Heal(amount); // Increase the player's lives by the heal amount
         UpdateHeartsUI(); // Update the UI to reflect the new number of lives
     }
 }
