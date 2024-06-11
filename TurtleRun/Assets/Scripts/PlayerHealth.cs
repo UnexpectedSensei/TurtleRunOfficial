@@ -22,6 +22,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentLives -= damage; // Reduce the player's lives by the damage amount
+        Debug.Log("Player took damage. Current lives: " + currentLives);
         if (currentLives < 0)
         {
             currentLives = 0; // Ensure lives don't go below zero
@@ -49,9 +50,11 @@ public class PlayerHealth : MonoBehaviour
     // Method triggered when the player collides with another object
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Player collided with: " + other.gameObject.name);
         // Check if the object the player collided with has the tag "CrabEnemy"
         if (other.CompareTag("CrabEnemy"))
         {
+            Debug.Log("Collided with CrabEnemy");
             // If the player is in "idle", "walking", or "sprinting" state, take damage
             if (currentState == "idle" || currentState == "walking" || currentState == "sprinting")
             {
@@ -63,6 +66,7 @@ public class PlayerHealth : MonoBehaviour
     // Method to handle player death
     void Die()
     {
+        Debug.Log("Player died");
         // Load the DeathScreen scene upon death
         SceneManager.LoadScene("DeathScreen");
     }

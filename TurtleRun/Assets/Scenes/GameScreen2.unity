@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 307777697}
   - component: {fileID: 307777696}
   - component: {fileID: 307777695}
-  - component: {fileID: 307777694}
+  - component: {fileID: 307777701}
   m_Layer: 3
   m_Name: MainCharacter
   m_TagString: Player
@@ -351,19 +351,6 @@ RectTransform:
   m_AnchoredPosition: {x: -839, y: -452.1759}
   m_SizeDelta: {x: 198.5692, y: 123.7513}
   m_Pivot: {x: 0.50000006, y: 0.5}
---- !u!114 &307777694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 307777692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d8b1d171fa466148a38e7b3547effb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: {fileID: 1148527528}
 --- !u!114 &307777695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,6 +498,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 307777692}
   m_CullTransparentMesh: 1
+--- !u!114 &307777701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307777692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab802a28b26da14c8775ac1a965ffe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLives: 3
+  hearts:
+  - {fileID: 343497989}
+  - {fileID: 53624236}
+  - {fileID: 293349826}
 --- !u!1 &324410708
 GameObject:
   m_ObjectHideFlags: 0
@@ -2155,6 +2159,7 @@ GameObject:
   - component: {fileID: 1990672850}
   - component: {fileID: 1990672849}
   - component: {fileID: 1990672851}
+  - component: {fileID: 1990672852}
   m_Layer: 3
   m_Name: CrabEnemy
   m_TagString: CrabEnemy
@@ -2327,6 +2332,19 @@ MonoBehaviour:
   PointA: {fileID: 1964163105}
   PointB: {fileID: 1323290812}
   speed: 35
+--- !u!114 &1990672852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990672844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b4bb7a4078e5d42bf6ab3482fde71a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
